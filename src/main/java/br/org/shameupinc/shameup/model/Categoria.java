@@ -1,4 +1,6 @@
 package br.org.shameupinc.shameup.model;
 
-public class Tema {
+
+public class Categoria {
+	
 }
