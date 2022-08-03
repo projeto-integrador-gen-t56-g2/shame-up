@@ -20,7 +20,7 @@ public class Categoria {
 	private String nome;
 	
 	@NotBlank(message = "A descrição é Obrigatória!")
-	@Size(min = 10, max = 1000, message = "A descrição deve conter no mínimo 10 e no máximo 1000 caracteres")
+	@Size(min = 3, max = 1000, message = "A descrição deve conter no mínimo 10 e no máximo 1000 caracteres")
 	private String descricao;
 
 	public Long getId() {
