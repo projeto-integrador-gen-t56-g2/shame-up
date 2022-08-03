@@ -21,7 +21,7 @@ public class Categoria {
 	
 	@NotBlank(message = "A descrição é Obrigatória!")
 	@Size(min = 10, max = 1000, message = "A descrição deve conter no mínimo 10 e no máximo 1000 caracteres")
-	private String descrição;
+	private String descricao;
 
 	public Long getId() {
 		return id;
@@ -39,12 +39,12 @@ public class Categoria {
 		this.nome = nome;
 	}
 
-	public String getDescrição() {
-		return descrição;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescrição(String descrição) {
-		this.descrição = descrição;
+	public void setDescrição(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	
