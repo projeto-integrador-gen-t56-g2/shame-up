@@ -2,15 +2,12 @@ package br.org.shameupinc.shameup.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
@@ -35,6 +32,10 @@ public class Postagem {
 	@NotBlank
 	@Size(min = 3 , max = 255)
 	private String titulo;
+
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Categoria categoria;
 
 	public Long getId() {
 		return id;
