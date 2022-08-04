@@ -1,12 +1,11 @@
 package br.org.shameupinc.shameup.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "tb_categorias")
@@ -22,6 +21,10 @@ public class Categoria {
 	@NotBlank(message = "A descrição é Obrigatória!")
 	@Size(min = 3, max = 1000, message = "A descrição deve conter no mínimo 10 e no máximo 1000 caracteres")
 	private String descricao;
+
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("categoria")
+	private List<Postagem> postagens;
 
 	public Long getId() {
 		return id;
