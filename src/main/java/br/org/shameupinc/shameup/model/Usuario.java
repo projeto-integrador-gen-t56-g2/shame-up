@@ -134,11 +134,11 @@ public class Usuario {
     }
 
 
-    public List<Postagem> getPostagem() {
+    public List<Postagem> getPostagens() {
         return postagens;
     }
 
-    public void setPostagens(List<Postagem> postagem) {
-        this.postagens = postagem;
+    public void setPostagens(List<Postagem> postagens) {
+        this.postagens = postagens;
     }
 }
