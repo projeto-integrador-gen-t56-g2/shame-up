@@ -80,7 +80,21 @@ public class Postagem {
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
-	
-	
-	
+
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 }
