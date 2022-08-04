@@ -1,6 +1,7 @@
 package br.org.shameupinc.shameup.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -12,7 +13,6 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "tb_postagens")
-
 public class Postagem {
 
 	@Id
@@ -36,6 +36,10 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Categoria categoria;
+
+	@ManyToOne
+	@JsonIgnoreProperties("usuario")
+	private Usuario usuario;
 
 	public Long getId() {
 		return id;
