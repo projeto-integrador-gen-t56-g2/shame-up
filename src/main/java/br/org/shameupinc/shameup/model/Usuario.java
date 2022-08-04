@@ -1,139 +1,143 @@
 package br.org.shameupinc.shameup.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "tb_usuarios")
 public class Usuario {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 
-	@NotBlank
-	@Size(max= 255)
-	private String nome;
-	
-	@NotBlank
-	@Size(max= 255)
-	private String email;
-	
-	@NotBlank
-	private String tipo;
-	
-	@Size(max=11)
-	private String cpf;
-	
-	@Size(max=14)
-	private String cnpj;
-	
-	@DateTimeFormat(pattern = "dd/MM/yyyy") 
-	private LocalDate data_nascimento;
-	
-	@Size(max=11)
-	private String telefone;
-	
-	@NotBlank
-	@Size(min=6, message= "A senha deve ter no mínimo 6 caracteres")
-	private String senha;
-	
-	private String foto;
-	
-	
-	//getters and setters
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @NotBlank
+    @Size(max = 255)
+    private String nome;
 
-	public String getNome() {
-		return nome;
-	}
+    @NotBlank
+    @Size(max = 255)
+    private String email;
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    @NotBlank
+    private String tipo;
 
-	public String getEmail() {
-		return email;
-	}
+    @Size(max = 11)
+    private String cpf;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    @Size(max = 14)
+    private String cnpj;
 
-	public String getTipo() {
-		return tipo;
-	}
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private LocalDate data_nascimento;
 
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
+    @Size(max = 11)
+    private String telefone;
 
-	public String getCpf() {
-		return cpf;
-	}
+    @NotBlank
+    @Size(min = 6, message = "A senha deve ter no mínimo 6 caracteres")
+    private String senha;
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    private String foto;
 
-	public String getCnpj() {
-		return cnpj;
-	}
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
+    @JsonIgnoreProperties("usuario")
+    private List<Postagem> postagens;
 
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
+    //getters and setters
+    public Long getId() {
+        return id;
+    }
 
-	public LocalDate getData_nascimento() {
-		return data_nascimento;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setData_nascimento(LocalDate data_nascimento) {
-		this.data_nascimento = data_nascimento;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getSenha() {
-		return senha;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public String getTipo() {
+        return tipo;
+    }
 
-	public String getFoto() {
-		return foto;
-	}
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-	
-	
-	
-	
-	
-	
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public LocalDate getData_nascimento() {
+        return data_nascimento;
+    }
+
+    public void setData_nascimento(LocalDate data_nascimento) {
+        this.data_nascimento = data_nascimento;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+
+    public List<Postagem> getPostagem() {
+        return postagens;
+    }
+
+    public void setPostagens(List<Postagem> postagem) {
+        this.postagens = postagem;
+    }
 }
