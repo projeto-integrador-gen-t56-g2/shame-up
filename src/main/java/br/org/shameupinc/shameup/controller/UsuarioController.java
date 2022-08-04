@@ -24,7 +24,7 @@ import br.org.shameupinc.shameup.model.Usuario;
 import br.org.shameupinc.shameup.repository.UsuarioRepository;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 
 public class UsuarioController {

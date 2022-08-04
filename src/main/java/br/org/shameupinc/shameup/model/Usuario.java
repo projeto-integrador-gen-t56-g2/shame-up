@@ -1,6 +1,7 @@
 package br.org.shameupinc.shameup.model;
 
-import java.time.LocalDate;
+
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -36,7 +37,7 @@ public class Usuario {
     private String cnpj;
 
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private LocalDate data_nascimento;
+    private Date data_nascimento;
 
     @Size(max = 11)
     private String telefone;
@@ -100,11 +101,11 @@ public class Usuario {
         this.cnpj = cnpj;
     }
 
-    public LocalDate getData_nascimento() {
+    public Date getData_nascimento() {
         return data_nascimento;
     }
 
-    public void setData_nascimento(LocalDate data_nascimento) {
+    public void setData_nascimento(Date data_nascimento) {
         this.data_nascimento = data_nascimento;
     }
 
