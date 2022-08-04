@@ -34,11 +34,11 @@ public class Postagem {
 	private String titulo;
 
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+	@JsonIgnoreProperties("postagens")
 	private Categoria categoria;
 
 	@ManyToOne
-	@JsonIgnoreProperties("postagem")
+	@JsonIgnoreProperties("postagens")
 	private Usuario usuario;
 
 	public Long getId() {
