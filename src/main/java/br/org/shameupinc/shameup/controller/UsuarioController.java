@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.org.shameupinc.shameup.model.UsuarioLogin;
+import br.org.shameupinc.shameup.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,32 +34,44 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
+	@Autowired
+	private UsuarioService usuarioService;
 
-	
-	@GetMapping
+	@GetMapping("/all")
     public ResponseEntity<List<Usuario>> getAll(){
         return ResponseEntity.ok(usuarioRepository.findAll());
 	}
+
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> getById(@PathVariable Long id){
 		return usuarioRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-		
 	}
+
 	@GetMapping("/nome/{nome}")
 	public ResponseEntity<List<Usuario>> getByNome(@PathVariable String nome) {
 		return ResponseEntity.ok(usuarioRepository.findAllByNomeContainingIgnoreCase(nome));
 	}
-	
-	@PostMapping
-	public ResponseEntity<Usuario> post(@Valid @RequestBody Usuario usuario) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioRepository.save(usuario));
+
+	@PostMapping("/logar")
+	public ResponseEntity<UsuarioLogin> autenticarUsuario(@RequestBody Optional<UsuarioLogin> usuario){
+		return usuarioService.logarUsuario(usuario)
+				.map(resp -> ResponseEntity.ok(resp))
+				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
 	
-	@PutMapping
+	@PostMapping("/cadastrar")
+	public ResponseEntity<Usuario> post(@Valid @RequestBody Usuario usuario) {
+		return usuarioService.cadastrarUsuario(usuario)
+				.map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
+	}
+	
+	@PutMapping("/atualizar")
 	public ResponseEntity<Usuario> put(@Valid @RequestBody Usuario usuario) {
-		return usuarioRepository.findById(usuario.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK)
-				.body(usuarioRepository.save(usuario))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+		return usuarioService.atualizarUsuario(usuario)
+				.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
