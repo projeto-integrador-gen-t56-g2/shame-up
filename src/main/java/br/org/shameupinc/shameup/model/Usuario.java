@@ -5,10 +5,14 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,8 +27,9 @@ public class Usuario {
     @Size(max = 255)
     private String nome;
 
-    @NotBlank
+    @Schema(example = "email@email.com")
     @Size(max = 255)
+    @Email
     private String email;
 
     @NotBlank
