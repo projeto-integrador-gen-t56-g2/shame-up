@@ -13,7 +13,8 @@ import io.swagger.v3.oas.models.responses.ApiResponse;
 import io.swagger.v3.oas.models.responses.ApiResponses;
 
 @Configuration
-public class SwaggerConfig {
+public class
+SwaggerConfig {
 	public OpenAPI springShameUpOpenAPI() {
 		return new OpenAPI()
 				.info(new Info().title("Shame Up").description("Projeto Integrador Shame Up - Generation Brasil")
